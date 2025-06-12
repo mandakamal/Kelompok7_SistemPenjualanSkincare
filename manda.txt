@@ -1,0 +1,129 @@
+1. SELECT agent_name FROM
+AGENTS
+INTERSECT
+SELECT cust_name FROM
+CUSTOMER
+
+2. SELECT agent_name,
+working_area FROM AGENTS
+INTERSECT
+SELECT cust_name,
+working_area FROM CUSTOMER
+
+3. SELECT agent_name nama,
+working_area kota FROM 
+AGENTS
+INTERSECT
+SELECT cust_name name,
+cust_city kota FROM CUSTOMER
+
+4. SELECT agent_name || '' ||
+working_area nama FROM
+AGENTS
+INTERSECT
+SELECT cust_name || '' ||
+cust_city nama FROM CUSTOMER
+ORDER BY nama
+
+5. SELECT working_area wilayah
+FROM AGENTS
+INTERSECT
+SELECT cust_city wilayah
+FROM CUSTOMER
+ORDER BY wilayah
+
+6. SELECT country negara FROM 
+AGENTS
+INTERSECT
+SELECT cust_country negara
+FROM CUSTOMER
+ORDER BY negara
+
+
+
+1. SELECT working_area wilayah
+FROM AGENTS
+MINUS
+SELECT cust_city wilayah
+FROM CUSTOMER
+
+2. SELECT cust_city wilayah
+FROM CUSTOMER
+MINUS
+SELECT working_area wilayah
+FROM AGENTS
+
+3. SELECT agent_name FROM
+AGENTS
+MINUS
+SELECT cust_name FROM
+CUSTOMER
+
+4. SECECT cust_name FROM
+CUSTOMER
+MINUS
+SELECT agent_name FROM
+AGENTS
+
+5. SELECT agent_name,
+working_area, 'AGENT' FROM
+AGENTS
+MINUS
+SELECT cust_name,
+working_area, 'CUSTOMER'
+FROM CUSTOMER
+ORDER BY agent_name
+
+
+1. INSERT INTO Customer (CUST_CODE, CUST_NAME, CUST_CITY, WORKING_AREA, CUST_COUNTRY, GRADE, OPENING_AMT, RECEIVE_AMT, PAYMENT_AMT, OUTSTANDING_AMT, PHONE_NO, AGENT_CODE)
+VALUES ('C00027', 'Ravi Kumar', 'Bangalore', 'Bangalore', 'India', 3, 5000, 6000, 7000, 7000, 'MAMAMNASI','A015' );
+
+2. SELECT agent_name FROM
+AGENTS
+UNION
+SELECT cust_name FROM
+CUSTOMER
+
+3. SELECT agent_name FROM
+AGENTS
+UNION ALL
+SELECT cust_name FROM
+CUSTOMERS
+
+4. SELECT agent_name, 'AGENT'
+FROM AGENTS
+UNION
+SELECT cust_name, 'CUSTOMER'
+FROM CUSTOMER
+
+5. SELECT agent_name,
+working_area, 'AGENT' FROM
+AGENTS
+UNION ALL
+SELECT cust_name,
+cust_country, 'CUSTOMER'
+FROM CUSTOMER
+
+6. SELECT agent_name, 'AGENT'
+FROM AGENTS
+UNION ALL
+SELECT cust_name, 'CUSTOMER'
+FROM CUSTOMER
+
+7. SELECT agent_name,
+working_area, 'AGENT' FROM
+AGENTS
+UNION ALL
+SELECT cust_name,
+working_area, 'CUSTOMER'
+FROM CUSTOMER
+ORDER BY cust_name
+
+8. SELECT agent_name,
+working_area, 'AGENT' FROM
+AGENTS
+UNION ALL
+SELECT cust_name,
+working_area, 'CUSTOMER'
+FROM CUSTOMER
+ORDER BY agent_name

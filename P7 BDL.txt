@@ -1,0 +1,60 @@
+1. SELECT A.AGENT_NAME, (SELECT AVG(COMMISSION) AS RATA FROM AGENTS AG INNER JOIN ORDERS O ON AG.AGENT_CODE = O.AGENT_CODE) RATARATASEMUA FROM AGENTS A ORDER BY COMMISSION;
+2. SELECT a.agent_name, ROUND(AVG(ord_amount),2) AS rataagent, (SELECT ROUND(AVG(ord_amount),2) AS RataAll FROM agents ag, orders o WHERE ag.agent_code = o.agent_code) FROM agents a, orders odr WHERE a.agent_code = odr.agent_code
+GROUP BY a.agent_name;
+3. SELECT a.agent_name, ROUND(AVG(ord_amount),2) AS rataagt, (SELECT ROUND(AVG(ord_amount),2) AS RataAll FROM agents ag, orders o WHERE ag.agent_code = o.agent_code), (SELECT SUM(ord_amount) AS TotalAll FROM agents ag, orders o WHERE ag.agent_code = o.agent_code) AS TotalAll FROM agents a, orders odr
+WHERE a.agent_code = odr.agent_code GROUP BY a.agent_name;
+
+-- Subquery di dalam FROM
+
+1. SELECT * FROM agents, (SELECT ROUND(AVG(commission),2) AS rata FROM agents) SQ1
+ORDER BY commission;
+
+2. SELECT * FROM agents, (SELECT ROUND(AVG(commission),2) AS rata, SUM(commission) AS total FROM agents) SQ1
+ORDER BY commission;
+
+3. SELECT * FROM agents, (SELECT ROUND(AVG(commission),2) AS rata, SUM(commission) AS total FROM agents) SQ1 WHERE agents.commission > SQ1.rata ORDER BY commission;
+
+4. SELECT * FROM agents, (SELECT MAX(commission) AS max FROM agents) SQ1 WHERE agents.commission = SQ1.max ORDER BY commission;
+
+5. SELECT a.agent_name, a.working_area, o.ord_amount, o.advance_amount FROM agents a JOIN orders o ON a.agent_code = o.agent_code ORDER BY o.ord_amount;
+
+6. SELECT agent_name, working_area, ord_amount, advance_amount, max, min FROM AGENTS a, ORDERS o, (SELECT MAX(ord_AMOUNT) AS max FROM orders) SQ1, (SELECT MIN(ord_AMOUNT) AS min FROM orders) SQ2 WHERE a.agent_code = o.agent_code AND o.ord_amount BETWEEN SQ2.min AND SQ1.max;
+
+
+1. SELECT * FROM AGENTS WHERE commission = (SELECT AVG(commission) FROM agents) ORDER BY commission;
+2   SELECT * FROM ORDERS WHERE ORD_AMOUNT > (SELECT AVG(ORD_AMOUNT) FROM ORDERS) ORDER BY ORD_AMOUNT;
+3   SELECT agent_name, working_area FROM AGENTS WHERE agent_code IN (SELECT agent_code FROM ORDERS WHERE ord_amount < 1000);
+4   SELECT agent_name, working_area FROM AGENTS WHERE agent_code NOT IN (SELECT agent_code FROM ORDERS WHERE ord_amount < 3000);
+5   SELECT agent_name, working_area FROM AGENTS WHERE agent_code NOT IN (SELECT agent_code FROM ORDERS WHERE ord_amount < 1000);
+6   SELECT agent_name, working_area, commission, ord_num FROM AGENTS a INNER JOIN ORDERS o ON a.agent_code = o.agent_code WHERE ord_num > (SELECT AVG(ord_num) FROM ORDERS);
+7   SELECT a.agent_code, agent_name, SUM(ord_amount) FROM AGENTS a INNER JOIN ORDERS o ON a.agent_code = o.agent_code HAVING SUM(ord_amount) > (SELECT AVG(ord_amount) FROM ORDERS) GROUP BY a.agent_code, agent_name;
+8   SELECT a.working_area, SUM(ord_amount) as Total FROM AGENTS a INNER JOIN ORDERS o ON a.agent_code = o.agent_code HAVING SUM(ord_amount) > (SELECT AVG(ord_amount) FROM ORDERS) GROUP BY a.working_area order by total;
+9   SELECT a.working_area, SUM(ord_amount) as Total FROM AGENTS a INNER JOIN ORDERS o ON a.agent_code = o.agent_code WHERE EXISTS (SELECT working_area FROM CUSTOMER) GROUP BY a.working_area ORDER BY Total;
+10  SELECT a.working_area, SUM(ord_amount) as Total FROM AGENTS a INNER JOIN ORDERS o ON a.agent_code = o.agent_code WHERE working_area NOT IN (SELECT working_area FROM CUSTOMER) GROUP BY a.working_area ORDER BY Total;
+11  SELECT a.working_area, SUM(ord_amount) as Total FROM AGENTS a INNER JOIN ORDERS o ON a.agent_code = o.agent_code WHERE working_area IN (SELECT working_area FROM CUSTOMER) GROUP BY a.working_area ORDER BY Total;
+
+Tugas pratikum 
+
+1. SELECT a.agent_name, ROUND(AVG(ord_amount),2) AS rataagent, (SELECT ROUND(AVG(ord_amount)) AS TotalAll FROM agents ag, orders o WHERE ag.agent_code = o.agent_code) AS RataAll, (SELECT SUM(ord_amount) AS TotalAll FROM agents ag, orders o WHERE ag.agent_code = o.agent_code) AS TotalAll FROM AGENTS a, ORDERS odr WHERE a.agent_code = odr.agent_code GROUP BY a.agent_name;
+
+2. SELECT a.agent_name, ROUND(AVG(ord_amount),2) AS rataagent,
+(SELECT ROUND(AVG(ord_amount)) AS TotalA11 FROM agents ag,
+orders o WHERE ag.agent_code = o.agent_code) AS RataA11,
+(SELECT SUM(ord_amount) AS TotalA11 FROM agents ag,
+orders o WHERE ag.agent_code = o.agent_code) AS TotalA11
+FROM AGENTS a, ORDERS odr
+WHERE a.agent_code = odr.agent_code
+GROUP BY a.agent_name;
+
+3. SELECT a.AGENT_NAME, a.WORKING_AREA, o.ORD_AMOUNT, o.ADVANCE_AMOUNT, (SELECT MAX(ORD_AMOUNT) FROM ORDERS) AS MAX FROM AGENTS a JOIN ORDERS o ON a.AGENT_CODE = o.AGENT_CODE WHERE o.ORD_AMOUNT < (SELECT MAX(ORD_AMOUNT) FROM ORDERS) ORDER BY o.ORD_AMOUNT;
+
+4. SELECT a.AGENT_NAME, a.WORKING_AREA, o.ORD_AMOUNT, o.ADVANCE_AMOUNT, (SELECT MAX(ORD_AMOUNT) FROM ORDERS) AS MAX FROM AGENTS a JOIN ORDERS o ON a.AGENT_CODE = o.AGENT_CODE WHERE EXISTS ( SELECT 1 FROM ORDERS o2 WHERE o2.ORD_AMOUNT = (SELECT MAX(ORD_AMOUNT) FROM ORDERS)) AND o.ORD_AMOUNT < (SELECT MAX(ORD_AMOUNT) FROM ORDERS) ORDER BY o.ORD_AMOUNT;
+
+5. SELECT a.AGENT_NAME, a.WORKING_AREA, o.ORD_AMOUNT, o.ADVANCE_AMOUNT, (SELECT MAX(ORD_AMOUNT) FROM ORDERS) AS MAX FROM AGENTS a JOIN ORDERS o ON a.AGENT_CODE = o.AGENT_CODE WHERE NOT EXISTS ( SELECT 1 FROM ORDERS o2 WHERE o2.ORD_AMOUNT = (SELECT MAX(ORD_AMOUNT) FROM ORDERS) AND o2.ORD_AMOUNT <= o.ORD_AMOUNT) ORDER BY o.ORD_AMOUNT;
+
+
+
+
+
+
+ 
