@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skincare</title>
+</head>
+
+<body style="background-color: rgb(255, 240, 245);
+color: rgb(70, 130, 180);
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+text-align: left;">
+
+    <fieldset style="background-color: rgb(240, 248, 255); padding: 20px; border-radius: 10px;">
+        <legend style="background-color: rgb(219, 112, 147);
+        width: 200px;
+        color: rgb(255, 245, 238);
+        padding: 5px;
+        text-align: center;
+        border-radius: 5px;">
+            <h2>Form Skincare</h2>
+        </legend>
+
+        <form action="makeup.html" method="post">
+            <table>
+                <tr>
+                    <td>Nama</td>
+                    <td>:</td>
+                    <td><input type="text" required></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>:</td>
+                    <td><input type="email" required></td>
+                </tr>
+                <tr>
+                    <td>Jenis Kulit</td>
+                    <td>:</td>
+                    <td>
+                        <select>
+                            <option>Berminyak</option>
+                            <option>Kering</option>
+                            <option>Kombinasi</option>
+                            <option>Sensitif</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+
+            <h3>Petunjuk Skincare untuk Jenis Kulit</h3>
+            <table border="1" cellpadding="8" cellspacing="0" align="center"
+                style="width: 100%; border-collapse: collapse; text-align: left; background-color: rgb(255, 250, 250);">
+                <tr style="background-color: rgb(219, 112, 147); color: white;">
+                    <th>Jenis Kulit</th>
+                    <th>Skincare yang Direkomendasikan</th>
+                </tr>
+                <tr style="background-color: rgb(255, 228, 225);">
+                    <td><b>Berminyak</b></td>
+                    <td>
+                        - Gunakan facial wash berbahan gel <br>
+                        - Pilih toner yang mengandung AHA/BHA <br>
+                        - Pakai pelembap berbasis air <br>
+                        - Gunakan sunscreen yang ringan (gel atau water-based)
+                    </td>
+                </tr>
+                <tr style="background-color: rgb(255, 240, 245);">
+                    <td><b>Kering</b></td>
+                    <td>
+                        - Gunakan cleanser berbahan hydrating <br>
+                        - Pilih toner yang menghidrasi (mengandung hyaluronic acid) <br>
+                        - Pakai pelembap yang rich dan mengandung ceramide <br>
+                        - Gunakan sunscreen dengan tambahan pelembap
+                    </td>
+                </tr>
+                <tr style="background-color: rgb(255, 228, 225);">
+                    <td><b>Kombinasi</b></td>
+                    <td>
+                        - Gunakan facial wash yang lembut <br>
+                        - Pilih toner yang seimbang (tidak terlalu kering atau berminyak) <br>
+                        - Pakai pelembap ringan di area berminyak dan lebih rich di area kering <br>
+                        - Gunakan sunscreen dengan tekstur ringan
+                    </td>
+                </tr>
+                <tr style="background-color: rgb(255, 240, 245);">
+                    <td><b>Sensitif</b></td>
+                    <td>
+                        - Gunakan cleanser tanpa parfum dan alkohol <br>
+                        - Pilih toner dengan kandungan soothing seperti aloe vera <br>
+                        - Pakai pelembap dengan bahan calming seperti centella asiatica <br>
+                        - Gunakan sunscreen dengan kandungan mineral (zinc oxide)
+                    </td>
+                </tr>
+            </table>
+
+            <br>
+            <input type="submit" value="Lanjut ke Makeup" 
+                style="background-color: rgb(219, 112, 147); 
+                color: white; 
+                border: none; 
+                padding: 10px 20px; 
+                cursor: pointer; 
+                font-size: 16px;
+                border-radius: 5px;">
+        </form>
+
+    </fieldset>
+
+</body>
+
+</html>
